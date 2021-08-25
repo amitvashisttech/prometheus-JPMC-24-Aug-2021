@@ -38,6 +38,10 @@ avg without(cpu) (rate(node_cpu_seconds_total{job="node_exporter",instance="loca
 
 
 
+
+
+
+
 Used : 
 
 node_memory_MemTotal_bytes{instance="172.31.0.101:9100", job="node_exporter"} - node_memory_MemFree_bytes{instance="172.31.0.101:9100", job="node_exporter"} - node_memory_Cached_bytes{instance="172.31.0.101:9100", job="node_exporter"} - node_memory_Buffers_bytes{instance="172.31.0.101:9100", job="node_exporter"}
@@ -50,3 +54,22 @@ node_memory_Buffers_bytes{instance="172.31.0.101:9100", job="node_exporter"}
 
 Cached:
 node_memory_Cached_bytes{instance="172.31.0.101:9100", job="node_exporter"}
+
+
+
+
+Guage
+======>
+
+100 -
+(
+  avg(node_memory_MemAvailable_bytes{job="node", instance="$instance"})
+/
+  avg(node_memory_MemTotal_bytes{job="node", instance="$instance"})
+* 100
+)
+
+Avaliable: 
+
+avg(node_memory_MemAvailable_bytes{job="node", instance="$instance"})
+

@@ -9,7 +9,7 @@ http_requests_total{code=~"2.*|4.*"}
 
 
 Function
-http_requests_total[5m]
+
 rate(http_requests_total[5m])
 sum(rate(http_requests_total[5m])) by (job)
 
@@ -17,3 +17,36 @@ sum(rate(http_requests_total[5m])) by (job)
 
 
 topk(3,sum(rate(node_cpu_seconds_total[15m]))) by (app)
+topk(3,sum(rate(node_cpu_seconds_total[15m]))) by (app)
+
+
+
+Grafana
+========>
+node_cpu_seconds_total{job="node_exporter",instance="localhost:9100"}
+
+rate(node_cpu_seconds_total{job="node_exporter",instance="localhost:9100",mode!="idle"}[1m])
+
+irate(node_cpu_seconds_total{job="node_exporter",instance="localhost:9100",mode!="idle"}[1m])
+
+avg without(cpu) (rate(node_cpu_seconds_total{job="node_exporter",instance="localhost:9100",mode!="idle"}[1m]) )
+
+Legend: {{mode}}
+
+
+avg without(cpu) (rate(node_cpu_seconds_total{job="node_exporter",instance="localhost:9100",mode!="idle"}[1m]) )
+
+
+
+Used : 
+
+node_memory_MemTotal_bytes{instance="172.31.0.101:9100", job="node_exporter"} - node_memory_MemFree_bytes{instance="172.31.0.101:9100", job="node_exporter"} - node_memory_Cached_bytes{instance="172.31.0.101:9100", job="node_exporter"} - node_memory_Buffers_bytes{instance="172.31.0.101:9100", job="node_exporter"}
+
+Free: 
+node_memory_MemFree_bytes{instance="172.31.0.101:9100", job="node_exporter"}
+
+Buffer:
+node_memory_Buffers_bytes{instance="172.31.0.101:9100", job="node_exporter"}
+
+Cached:
+node_memory_Cached_bytes{instance="172.31.0.101:9100", job="node_exporter"}

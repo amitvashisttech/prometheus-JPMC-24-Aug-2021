@@ -9,7 +9,7 @@ http_requests_total{code=~"2.*|4.*"}
 
 
 Function
-
+http_requests_total[5m]
 rate(http_requests_total[5m])
 sum(rate(http_requests_total[5m])) by (job)
 

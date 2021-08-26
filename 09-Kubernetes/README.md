@@ -5,6 +5,7 @@ https://istio.io/latest/docs/setup/getting-started/#download
 curl -L https://istio.io/downloadIstio | sh -
 
 
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.11/samples/bookinfo/platform/kube/bookinfo.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.11/samples/addons/prometheus.yaml
 

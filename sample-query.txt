@@ -73,3 +73,23 @@ Avaliable:
 
 avg(node_memory_MemAvailable_bytes{job="node", instance="$instance"})
 
+
+
+
+Flask_App
+=========>
+( rate(mysql_query_latency_seconds_sum[5m]) / rate(mysql_query_latency_seconds_count[5m]) )
+
+sum(rate(flask_request_latency_seconds_bucket{le="1.0"}[5m])) by (job) / sum(rate(flask_request_latency_seconds_count[5m])) by (job)
+
+( sum(rate(flask_request_latency_seconds_bucket{le="0.25"}[5m])) by (job) + sum(rate(flask_request_latency_seconds_bucket{le="1.0"}[5m])) by (job)  )/  2 / sum(rate(flask_request_latency_seconds_count[5m])) by (job)	
+
+
+
+To improve the score : 
+ while true; do time curl localhost:5000/query; done
+
+To decrease the score: 
+while true; do time curl localhost:5000/sleep; done
+
+

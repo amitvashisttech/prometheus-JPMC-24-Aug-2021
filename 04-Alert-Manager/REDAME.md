@@ -47,3 +47,10 @@ yes > /dev/null &
 ```
 killall yes 
 ```
+
+
+
+## Predefined Alert for ref:
+```
+https://awesome-prometheus-alerts.grep.to/rules.html#host-and-hardware
+```
